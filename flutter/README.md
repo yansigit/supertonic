@@ -32,7 +32,7 @@ flutter run -d macos
 flutter clean
 flutter pub get
 cd ios && pod install && cd ..
-flutter run -d ios --release # debug mode has perfomance issue
+flutter run -d ios --release # debug mode has performance issue
 ```
 
 Or run on a specific iOS device/simulator:

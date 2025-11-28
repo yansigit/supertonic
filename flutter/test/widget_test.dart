@@ -5,15 +5,32 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_sdk/main.dart';
 
 void main() {
-  testWidgets('App smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const SupertonicApp());
+  group('App Smoke Tests', () {
+    testWidgets('App renders successfully', (WidgetTester tester) async {
+      // Build our app and trigger a frame.
+      await tester.pumpWidget(const SupertonicApp());
 
-    // Verify that our app title is present.
-    expect(find.text('Supertonic'), findsOneWidget);
+      // Verify that our app title is present.
+      expect(find.text('Supertonic'), findsOneWidget);
+    });
+
+    testWidgets('App uses Cupertino design', (WidgetTester tester) async {
+      await tester.pumpWidget(const SupertonicApp());
+
+      // Verify CupertinoApp is used
+      expect(find.byType(CupertinoApp), findsOneWidget);
+      expect(find.byType(CupertinoPageScaffold), findsOneWidget);
+    });
+
+    testWidgets('Navigation bar is present', (WidgetTester tester) async {
+      await tester.pumpWidget(const SupertonicApp());
+
+      expect(find.byType(CupertinoNavigationBar), findsOneWidget);
+    });
   });
 }
